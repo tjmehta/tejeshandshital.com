@@ -1,13 +1,14 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "tejeshandshital.com",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "private": true,
+  "description": "Tejesh and Shital's Wedding Website",
   "scripts": {
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/tjmehta/tejeshandshital.com.git"
   },
   "keywords": [
     "react",
@@ -21,12 +22,12 @@
     "edit",
     "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Tejesh Mehta (http://github.com/tjmehta)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/tjmehta/tejeshandshital.com/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/tjmehta/tejeshandshital.com",
   "devDependencies": {
     "babel-core": "^4.7.4",
     "babel-loader": "^4.1.0",
