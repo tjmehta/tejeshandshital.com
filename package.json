@@ -10,18 +10,6 @@
     "type": "git",
     "url": "https://github.com/tjmehta/tejeshandshital.com.git"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
   "author": "Tejesh Mehta (http://github.com/tjmehta)",
   "license": "MIT",
   "bugs": {
@@ -29,13 +17,27 @@
   },
   "homepage": "https://github.com/tjmehta/tejeshandshital.com",
   "devDependencies": {
+    "autoprefixer-loader": "^1.2.0",
     "babel-core": "^4.7.4",
     "babel-loader": "^4.1.0",
+    "css-loader": "^0.10.1",
+    "node-sass": "^2.1.1",
     "react-hot-loader": "^1.2.2",
+    "sass-loader": "^0.6.0",
+    "style-loader": "^0.10.2",
     "webpack": "^1.7.2",
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
-    "react": "^0.13.0"
+    "101": "^0.16.1",
+    "callback-count": "^0.1.0",
+    "debounce": "^1.0.0",
+    "good": "^6.1.1",
+    "good-console": "^5.0.0",
+    "hapi": "^8.4.0",
+    "hapi-webpack-dev-plugin": "^0.1.1",
+    "multiline": "^1.0.2",
+    "react": "^0.13.0",
+    "react-router": "^0.13.2"
   }
 }
