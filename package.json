@@ -37,6 +37,7 @@
     "good-console": "^5.0.0",
     "hapi": "^8.4.0",
     "hapi-webpack-dev-plugin": "^0.1.1",
+    "ismobilejs": "^0.3.5",
     "multiline": "^1.0.2",
     "react": "^0.13.0",
     "react-router": "^0.13.2"

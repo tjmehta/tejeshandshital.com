@@ -2,6 +2,7 @@ import React from 'react';
 var Nav = require('./Nav.js');
 var RSVP = require('./RSVP.js');
 var debounce = require('debounce');
+var isMobile = require('ismobilejs');
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -25,8 +26,9 @@ export default class Home extends React.Component {
   }
   render() {
     var windowHeight = this.state.windowHeight;
+    var minHeight = isMobile.phone ? 505 : 1010;
     var mainStyle = {
-      height: windowHeight > 1010 ? windowHeight : 1010
+      height: windowHeight > minHeight ? windowHeight : minHeight
     };
 
     return (
@@ -249,7 +251,8 @@ class EventCard extends React.Component {
       center: new google.maps.LatLng(place[1], place[2]),
       mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-      }
+      },
+      draggable: false
     }
     var map = new google.maps.Map(document.getElementById(this.state.id), mapOptions);
 

@@ -7,7 +7,7 @@ $navItems: 5;
 $navItemWidth: 120px;
 $navWidth: $navItemWidth * $navItems;
 $activeColor: #cce;
-$polaroidImgWidth: 600;
+$polaroidImgWidth: 600px;
 $polaroidWidth: $polaroidImgWidth + 30px;
 
 body {
@@ -78,14 +78,22 @@ h1 {
   padding: 0px;
   margin: 5px;
   font-size: 80px;
+  @media screen and (max-width: 740px) {
+    font-size: 40px;
+  }
   font-family: 'Alex Brush', cursive;
   // font-family: 'Engagement', cursive;
   text-shadow: 3px 3px 20px #000;
 }
 
 div.polaroid {
-  width: $polaroidWidth;
+  zoom: 100%;
   opacity: 0;
+  @media screen and (max-width: 740px) {
+    zoom: 50%;
+    opacity: 1;
+  }
+  width: $polaroidWidth;
   // height: 900px;
   padding: 15px;
   padding-bottom: 0px;
@@ -180,7 +188,7 @@ p {
   &.events {
     .event-map {
       width: 100%;
-      height: 28%;
+      height: 200px;
     }
     .event-card {
       box-shadow: 0px 0px 3px 0px #333;
