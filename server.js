@@ -5,18 +5,18 @@ var envIs = require('101/env-is');
 var assign = require('101/assign');
 
 var server = new Hapi.Server();
-server.connection({ port: 3000 });
+server.connection({ port: process.env.PORT || 3000 });
 
 // if (!envIs('development')) {
-  server.route({
-      method: 'GET',
-      path: '/{param*}',
-      handler: {
-          directory: {
-              path: 'client'
-          }
-      }
-  });
+server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: 'client'
+        }
+    }
+});
 
 server.route({
     method: 'GET',
