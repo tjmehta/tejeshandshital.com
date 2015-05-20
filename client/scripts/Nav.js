@@ -70,6 +70,7 @@ export default class App extends React.Component {
   						<li><a onClick={ this.closeNav.bind(this) } href="#about-us">About Us</a></li>
   						<li><a onClick={ this.closeNav.bind(this) } href="#proposal">Proposal Story</a></li>
   						<li><a onClick={ this.closeNav.bind(this) } href="#events">Events</a></li>
+  						<li><a onClick={ this.closeNav.bind(this) } href="#accomodations">Accomodations</a></li>
   						<li><a onClick={ this.closeNav.bind(this) } href="#rsvp">RSVP</a></li>
               <li className={ this.state.dropdown ? "dropdown open" : "dropdown" }>
   							<a href="#" onClick={ this.openDropdown.bind(this) } className="dropdown-toggle" data-toggle="dropdown">Registries <b className="caret"></b></a>

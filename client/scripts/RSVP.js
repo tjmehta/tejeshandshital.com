@@ -5,7 +5,7 @@ var debounce = require('debounce');
 
 export default class App extends React.Component {
   render() {
-    return <div id="rsvp" className="events row offwhite section">
+    return <div id="rsvp" className="events row section">
       <div className="contain">
         <div className="heading">
           <h2>RSVP</h2>

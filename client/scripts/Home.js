@@ -76,12 +76,16 @@ export default class Home extends React.Component {
             <div className="col-sm-6" data-sr="enter left, hustle 20px">
               <img className="img-circle" src="/images/tejesh.png" />
               <h5>TEJESH MEHTA</h5>
-              <p> Born in Fremont, CA and mostly raised in Greer, SC. TJ currently lives in San Francisco and loves it there. He is the Chief Architect at a startup named Runnable. </p>
+              <p> Born in Fremont, CA but was raised since preschool in Greer, SC. TJ left South Carolina to get his Computer Engineering degree at Georgia Tech in Atlanta, GA.
+                After graduating, TJ spent time living in Washington, DC and Austin, TX. For the past few years, TJ has settled down in San Francisco, California, where he is
+                the Chief Architect at a startup named Runnable. Everywhere he has lived, TJ is known for his techiness, spontaneity, and laid-back nature.</p>
             </div>
             <div className="col-sm-6" data-sr="enter right, hustle 20px">
               <img className="img-circle" src="/images/shital.png" />
               <h5>SHITAL PATEL</h5>
-              <p>Born and raised in Easley, SC. Currently lives in Birmingham where she is finishing up her Pediatric Residency. Shital will be moving to San Francisco this Summer.</p>
+              <p>Born and raised in Easley, SC. Shital went to undergrad at Emory in Atlanta, GA. After Emory, Shital continued her education at USC Medical School in Columbia, SC.
+                For the past few years, Shital has been in Birmingham, AL, where she is finishing up her Pediatric Residency. Shital will be moving to San Francisco as a General Pediatrician this Summer.
+                Shital is known for her bubbliness, organizational skills, and gossip knowledge.</p>
             </div>
           </div>
           <div id="proposal" className="clear"></div>
@@ -122,12 +126,33 @@ export default class Home extends React.Component {
             </div>
             { this.eventCards() }
           </div>
-          <div id="RSVP" className="clear"></div>
+          <div id="accomodations" className="clear"></div>
+        </div>
+
+        <div className="accomodations row offwhite section">
+          <div className="contain">
+            <div className="heading">
+              <h2>Accomodations</h2>
+              <p className="break">
+                <span></span><i className="fa fa-heart"></i><span></span>
+              </p>
+            </div>
+            <div className="col-sm-2"></div>
+            <div className="col-sm-8">
+              <p className="story">
+              We have reserved a block of rooms for our guests at the Hyatt Regency Greenville.<br/><br/>
+              <a href="https://resweb.passkey.com/go/PatelWeddingBlock82115" target="_blank" >Click here to make a reservation online.</a><br/><br/>
+              If calling, please make sure to book under the "Patel Mehta Wedding" room block to get the discounted rate.<br/>
+              </p>
+            </div>
+            <div className="col-sm-2"></div>
+          </div>
+          <div id="rsvp" className="clear"></div>
         </div>
 
         <RSVP />
 
-        <div className="row section registries">
+        <div className="row section registries offwhite">
           <p>WE ARE REGISTERED AT</p>
           <div className="col-sm-3"></div>
           <div className="col-sm-2" data-sr>
@@ -168,7 +193,7 @@ export default class Home extends React.Component {
           The festivities begin at 6pm<br/>
           <br/>
           Vedic Center<br/>
-          <br/>
+          Event Hall<br/>
           520 Bethel Drive<br/>
           Mauldin, SC 29662<br/>
         </p>,
