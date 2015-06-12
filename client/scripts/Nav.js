@@ -54,7 +54,7 @@ export default class App extends React.Component {
     );
   }
   render() {
-    var fixed = (this.state.windowScroll > this.state.navTop) ? true : false
+    var fixed = (this.state.windowScroll > this.state.navTop) ? true : false;
     return (
       <div className={ fixed ? 'navbar navbar-default z-index-100 fixed' : 'navbar navbar-default  z-index-100' }>
   			<div className="container">
@@ -77,7 +77,7 @@ export default class App extends React.Component {
   							<ul className="dropdown-menu">
   								<li><a onClick={ this.closeNav.bind(this) } href="http://www1.macys.com/registry/wedding/guest/?registryId=6349490" target="_blank">Macy's</a></li>
   								<li><a onClick={ this.closeNav.bind(this) } href="https://secure.williams-sonoma.com/registry/nw2x8nwrmc/registry-list.html" target="_blank">Williams and Sonoma</a></li>
-  								<li><a onClick={ this.closeNav.bind(this) } href="#registries">Bed & Bath</a></li>
+  								<li><a onClick={ this.closeNav.bind(this) } href="http://www.bedbathandbeyond.com/store/giftregistry/view_registry_guest.jsp?pwsToken=&eventType=Wedding&registryId=542118486&pwsurl=">Bed & Bath</a></li>
   							</ul>
   						</li>
   					</ul>
