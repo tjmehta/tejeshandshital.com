@@ -166,7 +166,7 @@ export default class Home extends React.Component {
             </a>
           </div>
           <div className="col-sm-2" data-sr>
-            <a href="http://www.bedbathandbeyond.com/store/giftregistry/view_registry_guest.jsp?pwsToken=&eventType=Wedding&registryId=542118486&pwsurl=" className="registry-tile">
+            <a href="http://www.bedbathandbeyond.com/store/giftregistry/view_registry_guest.jsp?pwsToken=&eventType=Wedding&registryId=542118486&pwsurl=" target="_blank" className="registry-tile">
               <img src="/images/bbb.png"></img>
             </a>
           </div>
