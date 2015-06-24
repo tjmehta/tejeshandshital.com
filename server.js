@@ -3,27 +3,29 @@ var Good = require('good');
 var createCount = require('callback-count');
 var envIs = require('101/env-is');
 var assign = require('101/assign');
+var join = require('path').join;
 
 var server = new Hapi.Server();
 server.connection({ port: process.env.PORT || 3000 });
 
 // if (!envIs('development')) {
 server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-        directory: {
-            path: 'client'
-        }
-    }
+  method: 'GET',
+  path: '/{param*}',
+  handler: {
+      directory: {
+          path: 'client'
+      }
+  }
 });
 
+/** FRONTEND ROUTES */
 server.route({
-    method: 'GET',
-    path: '/{name}',
-    handler: function (request, reply) {
-        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
-    }
+  method: 'GET',
+  path: '/admin',
+  handler: function (request, reply) {
+    reply.file(join(__dirname, 'client/index.html'));
+  }
 });
 
 
@@ -43,11 +45,11 @@ if (envIs('development')) {
     register: require('hapi-webpack-dev-plugin'),
     options: {
       compiler: require('webpack')(webpackConf),
-      hot  : true,
-      publicPath: webpackConf.output.publicPath,
+      // hot  : true,
+      // publicPath: webpackConf.output.publicPath,
       hot: true,
-      historyApiFallback: true,
       publicPath: './client',
+      historyApiFallback: true,
       contentBase: './client',
       devIndex: './client'
     }
@@ -55,23 +57,23 @@ if (envIs('development')) {
 }
 
 server.register({
-    register: Good,
-    options: {
-        reporters: [{
-            reporter: require('good-console'),
-            events: {
-                response: '*',
-                log: '*'
-            }
-        }]
-    }
+  register: Good,
+  options: {
+    reporters: [{
+      reporter: require('good-console'),
+      events: {
+        response: '*',
+        log: '*'
+      }
+    }]
+  }
 }, pluginCount.inc().next);
 
 // Start Server
 function startServer (err) {
-    if (err) { throw err; } // something bad happened loading a plugin
+  if (err) { throw err; } // something bad happened loading a plugin
 
-    server.start(function () {
-        server.log('info', 'Server running at: ' + server.info.uri);
-    });
+  server.start(function () {
+    server.log('info', 'Server running at: ' + server.info.uri);
+  });
 }
