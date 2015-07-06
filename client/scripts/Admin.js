@@ -72,6 +72,18 @@ export default class App extends React.Component {
             <h4>Confirmed RSVPs</h4>
             <RSVPTable />
           </div>
+          <div className="row well">
+            <h4>Manual RSVPs</h4>
+            <p>
+              <span>Use this&nbsp;</span>
+              <a
+                  target="_blank"
+                  href="https://docs.google.com/spreadsheets/d/1vwZZFwk2QnHAsJVa_ER-NtvaGQSQcDFtwa-Yns2HzMQ/edit?usp=sharing">
+              Google Doc
+              </a>
+              <span>&nbsp;for now..</span>
+            </p>
+          </div>
         </div>
       </div>
     );
