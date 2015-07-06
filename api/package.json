@@ -27,7 +27,7 @@
     "express-domain-middleware": "^0.1.0",
     "i": "^0.3.3",
     "keypather": "^1.10.1",
-    "mongoose": "^4.0.4",
+    "mongoose": "^4.0.6",
     "mongooseware": "^0.4.2",
     "object-loops": "^0.1.1",
     "parse-address": "0.0.4",
