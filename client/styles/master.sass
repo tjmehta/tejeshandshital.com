@@ -232,32 +232,6 @@ p {
   }
   &.rsvp {
     padding-bottom: 200px;
-    .tt-menu {
-      background-color: white;
-      width: 100%;
-      border-radius: 0 0 5px 5px;
-      padding: 10px 0;
-      .tt-dataset {
-        color: $lightBlue;
-        font-size: 18pt;
-        .tt-suggestion {
-          padding: 0 20px;
-          cursor: pointer;
-          border-top: 1px solid $veryLightGray;
-        }
-        .tt-suggestion.tt-cursor,
-        .tt-suggestion:hover {
-          color: white;
-          background-color: $lightBlue;
-        }
-        .tt-suggestion.not-found {
-          color: black;
-        }
-        .tt-suggestion.not-found:hover {
-          color: black;
-        }
-      }
-    }
   }
   &.registries {
     padding: 35px 0;
@@ -478,4 +452,35 @@ h2.white-text {
 }
 .checkbox {
   margin-top: 4px;
+}
+
+.tt-menu {
+  background-color: white;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  padding: 10px 0;
+  box-shadow: 0px 2px 5px 1px #aaa;
+  .tt-dataset {
+    color: $lightBlue;
+    font-size: 18pt;
+    .tt-suggestion {
+      padding: 0 20px;
+      cursor: pointer;
+      border-top: 1px solid $veryLightGray;
+    }
+    .tt-suggestion:first-child {
+      border-top: none;
+    }
+    .tt-suggestion.tt-cursor,
+    .tt-suggestion:hover {
+      color: white;
+      background-color: $lightBlue;
+    }
+    .tt-suggestion.not-found {
+      color: black;
+    }
+    .tt-suggestion.not-found:hover {
+      color: black;
+    }
+  }
 }

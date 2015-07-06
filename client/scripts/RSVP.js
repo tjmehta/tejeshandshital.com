@@ -10,6 +10,7 @@ var compose = require('101/compose');
 var createCount = require('callback-count');
 var RSVPForm = require('./RSVPForm');
 var keypather = require('keypather')();
+var adminMode = ~window.location.href.indexOf('admin_mode');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,13 +40,15 @@ export default class App extends React.Component {
     var invite = address.invite;
     var inviteCount = Math.max(
       parseInt(keypather.get(invite, 'patel.numInvited') || 0),
-      parseInt(keypather.get(invite, 'mehta.numInvited') || 0)
+      parseInt(keypather.get(invite, 'mehta.numInvited') || 0),
+      adminMode ? 10 : 0
     );
     var events = {};
     assign(
       events,
       keypather.get(invite, 'patel.events') || {},
-      keypather.get(invite, 'mehta.events') || {}
+      keypather.get(invite, 'mehta.events') || {},
+      adminMode ? {pithi:true, mendhi:true, garba:true, wedding:true, reception:true} : {}
     );
     var newState = put(this.state, 'invite', {
       address: formatAddr(address),

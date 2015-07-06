@@ -150,7 +150,7 @@ export default class App extends React.Component {
     evt.preventDefault();
   }
   handleSelect(evt, data) {
-    window.open('/rsvp/'+data._id);
+    window.open('/rsvp/'+data._id+'?admin_mode');
   }
 }
 
