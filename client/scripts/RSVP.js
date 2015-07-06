@@ -133,8 +133,8 @@ export default class App extends React.Component {
             <div className="col-sm-12 center-text">
               <span>Having problems? </span>
               <a href="mailto:tejesh.mehta@gmail.com">Email</a><span> or Call us.</span><br/>
-              <span>864-879-7173 (Mehtas)</span><br/>
-              <span>864-297-0238 (Patels)</span>
+              <span>864-879-7173 ( Mehta's)</span><br/>
+              <span>864-297-0238 ( Patel's)</span>
             </div>
           </div>
         </div>

@@ -101,7 +101,8 @@ export default class App extends React.Component {
           'Address not found.<br/>',
           'Having problems? ',
           '<a href="mailto:tejesh.mehta@gmail.com">Email</a> or Call us.<br/>',
-          '864-879-7173 (Mehtas)<br/> 864-297-0238 (Patels)',
+          '864-879-7173 ( Mehta\'s)<br/>',
+          '864-297-0238 ( Patel\'s)',
           '</div>'
         ].join('')
       }
