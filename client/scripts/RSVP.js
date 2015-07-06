@@ -174,7 +174,7 @@ export default class App extends React.Component {
 function formatAddr (addr) {
   var str = '';
   str += (addr.number || '');
-  str  = (str + ' ' + addr.street).trim();
+  str  = (str + ' ' + addr.street + ' ' + (addr.type || '')).trim();
   str  = (str + ' ' + (addr.sec_unit_type || '')).trim();
   str  = (str + ' ' + (addr.sec_unit_num  || '')).trim();
   str += ', ';

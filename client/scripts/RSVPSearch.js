@@ -21,17 +21,12 @@ export default class App extends React.Component {
   }
   handleAddresses(addresses) {
     addresses = addresses.map(function (addr) {
-      // addr = pick(addr, [
-      //   'number', 'street', 'type', 'sec_unit_type',
-      //   'sec_unit_num', 'city', 'state', 'zip', 'invite'
-      // ]);
       addr.full = formatAddr(addr);
       return addr;
     });
     this.putState({
       addresses: addresses
     });
-    this.setupTypeAhead();
   }
   handleErr(err) {
     this.putState({
@@ -51,9 +46,9 @@ export default class App extends React.Component {
             <span></span><i className="fa fa-heart"></i><span></span>
           </p>
         </div>
-        <div className="col-sm-3"></div>
-        <div className="col-sm-6">
-          <form onSubmit={ this.handleSubmit.bind(this) }>
+        <div className="col-sm-2"></div>
+        <div className="col-sm-8">
+          <form onSubmit={ this.preventDefault.bind(this) }>
             <div className="form-group form-group-lg">
               <label className="white-text" for="address">
                 Your Address (where you recieved your invite)
@@ -64,7 +59,7 @@ export default class App extends React.Component {
             </div>
           </form>
         </div>
-        <div className="col-sm-3"></div>
+        <div className="col-sm-2"></div>
       </div>
       <div id="registries" className="clear"></div>
     </div>;
@@ -115,7 +110,7 @@ export default class App extends React.Component {
       customEvents={ {'typeahead:selected': this.handleSelect.bind(this)} }
     ></Typeahead>;
   }
-  handleSubmit(evt) {
+  preventDefault(evt) {
     evt.preventDefault();
   }
   handleSelect(evt, data) {
@@ -126,7 +121,7 @@ export default class App extends React.Component {
 function formatAddr (addr) {
   var str = '';
   str += (addr.number || '');
-  str  = (str + ' ' + addr.street).trim();
+  str  = (str + ' ' + addr.street + ' ' + (addr.type || '')).trim();
   str  = (str + ' ' + (addr.sec_unit_type || '')).trim();
   str  = (str + ' ' + (addr.sec_unit_num  || '')).trim();
   str += ', ';

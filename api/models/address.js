@@ -243,24 +243,36 @@ AddressSchema.statics.import = function (invitee, data, nameData, cb) {
       if (err) { return cb(err); }
 
       var docNames = toArray(
-        keypather.get(doc, 'invite[invitee].names') || []
+        keypather.get(doc, 'invite.'+invitee+'.names') || []
       );
       var invite = addressData.invite[invitee];
-      if (!doc.invite[invitee] || deepEql(docNames, invite.names)) {
-        doc.invite[invitee] = invite;
+      var docInvite = doc.invite[invitee];
+      var $set = {};
+      if (!docInvite || deepEql(docNames, invite.names)) {
+        $set['invite.'+invitee] = invite;
       } else {
-        debug('error?', doc.toJSON());
-        doc.invite[invitee].names = unique(docNames.concat(invite.names));
+        debug('error?', docNames, invite.names);
+        var names = unique(docNames.concat(invite.names));
+        $set['invite.'+invitee+'.names'] = names;
+        $set['invite.'+invitee+'.multiName'] = names.join(', ');
+        $set['invite.'+invitee+'.numInvited'] = Math.max(
+          names.length,
+          parseInt(docInvite.numInvited || 0)
+        );
+        debug('unique', doc.invite[invitee].names);
+        debug('FULL invite', doc.invite[invitee]);
       }
-      doc.save(function (err) {
-        cb(err, doc);
-      });
+      self.findByIdAndUpdate(doc._id, { $set: $set }, {'new':true}, cb);
     });
   }
 };
 
 function toArray (thing) {
-  return Array.prototype.slice.call(thing);
+  var arr = [];
+  for(var i=0; i<thing.length; i++) {
+    arr.push(thing[i]);
+  }
+  return arr;
 }
 
 module.exports = mongoose.model('Addresses', AddressSchema);

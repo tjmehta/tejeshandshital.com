@@ -16,7 +16,7 @@ require('./load-env');
 var routes = (
   <Route path="/">
     <DefaultRoute handler={UserApp} />
-    <Route path="admin" handler={require('./AdminSearch')} />
+    <Route path="admin" handler={require('./Admin')} />
     <Route path="rsvp/:id" handler={require('./RSVP')} />
   </Route>
 );
