@@ -4,7 +4,6 @@ var pick = require('101/pick');
 var exists = require('101/exists');
 var keypather = require('keypather')();
 var api = require('./api');
-var formToObj = require('form-to-obj');
 var Typeahead = require('./react-typeahead');
 
 export default class App extends React.Component {
