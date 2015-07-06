@@ -62,7 +62,7 @@ export default class App extends React.Component {
           messages.length ?
             messages.map(function (msg) {
               return <div key={msg} className="alert alert-success" role="alert">
-                <strong>Saved!&nbsp;</strong>{msg}
+                <strong>{msg}</strong>
               </div>;
             }) :
             <div key={100} className="alert alert-success" role="alert">
@@ -78,7 +78,7 @@ export default class App extends React.Component {
       <table className="table">
         <tbody>
         <tr>
-          <th>Attendee</th>
+          <th>Attendee Full Name</th>
         {
           eventNames.map(function (name) {
             return <th key={name}>{ name }</th>;

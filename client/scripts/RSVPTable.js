@@ -50,11 +50,11 @@ export default class App extends React.Component {
                 return r.rsvps.map(function (r) {
                   return <tr>
                     <td>{ r.name }</td>
-                    <td>{ Boolean(r.events['mendhi']) }</td>
-                    <td>{ Boolean(r.events['pithi']) }</td>
-                    <td>{ Boolean(r.events['garba']) }</td>
-                    <td>{ Boolean(r.events['wedding']) }</td>
-                    <td>{ Boolean(r.events['reception']) }</td>
+                    <td>{ Boolean(r.events['mendhi'])+0+'' }</td>
+                    <td>{ Boolean(r.events['pithi'])+0+'' }</td>
+                    <td>{ Boolean(r.events['garba'])+0+'' }</td>
+                    <td>{ Boolean(r.events['wedding'])+0+'' }</td>
+                    <td>{ Boolean(r.events['reception'])+0+'' }</td>
                   </tr>;
                 });
               })
