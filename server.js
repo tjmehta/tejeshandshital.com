@@ -27,6 +27,13 @@ server.route({
     reply.file(join(__dirname, 'client/index.html'));
   }
 });
+server.route({
+  method: 'GET',
+  path: '/rsvp/{id}',
+  handler: function (request, reply) {
+    reply.file(join(__dirname, 'client/index.html'));
+  }
+});
 
 
 // Plugins

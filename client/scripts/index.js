@@ -17,6 +17,7 @@ var routes = (
   <Route path="/">
     <DefaultRoute handler={UserApp} />
     <Route path="admin" handler={require('./AdminSearch')} />
+    <Route path="rsvp/:id" handler={require('./RSVP')} />
   </Route>
 );
 

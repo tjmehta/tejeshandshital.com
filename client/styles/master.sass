@@ -2,14 +2,25 @@ $blue: #1E405B;
 $pink: #d6516d;
 $offwhite: #f5f4ec;
 $lightGray: #999999;
+$veryLightGray: #CCC;
 // $blue: #304050;
+$lightBlue: #337ab7;
 $navItems: 5;
 $navItemWidth: 120px;
 $navWidth: $navItemWidth * $navItems;
 $activeColor: #cce;
 $polaroidImgWidth: 600px;
 $polaroidWidth: $polaroidImgWidth + 30px;
-
+.relative {
+  position: relative;
+}
+.onehunned,
+.twitter-typeahead {
+  width: 100%;
+}
+.right {
+  float: right;
+}
 body {
   background-color: $blue;
   background-repeat: no-repeat;
@@ -71,6 +82,18 @@ body {
 }
 .z-index-100 {
   z-index: 100;
+}
+.slide {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: height .2s linear, opacity .2s linear;
+  -o-transition: height .2s linear, opacity .2s linear;
+  transition: height .2s linear, opacity .2s linear;
+}
+.slide.in {
+  height: 71px;
+  opacity: 1;
 }
 
 h1 {
@@ -207,6 +230,35 @@ p {
       }
     }
   }
+  &.rsvp {
+    padding-bottom: 200px;
+    .tt-menu {
+      background-color: white;
+      width: 100%;
+      border-radius: 0 0 5px 5px;
+      padding: 10px 0;
+      .tt-dataset {
+        color: $lightBlue;
+        font-size: 18pt;
+        .tt-suggestion {
+          padding: 0 20px;
+          cursor: pointer;
+          border-top: 1px solid $veryLightGray;
+        }
+        .tt-suggestion.tt-cursor,
+        .tt-suggestion:hover {
+          color: white;
+          background-color: $lightBlue;
+        }
+        .tt-suggestion.not-found {
+          color: black;
+        }
+        .tt-suggestion.not-found:hover {
+          color: black;
+        }
+      }
+    }
+  }
   &.registries {
     padding: 35px 0;
     p {
@@ -243,6 +295,12 @@ p {
       border-top: 1px solid $pink;
       display: inline-block;
       margin: 6px 10px;
+    }
+  }
+  p.break.white-text {
+    color: white;
+    span {
+      border-top: 1px solid white;
     }
   }
 }
@@ -334,7 +392,14 @@ iframe {
   background-size: cover;
 }
 .pink {
+  background-color: $pink;
+}
+.pink-text {
   color: $pink;
+}
+.white-text,
+h2.white-text {
+  color: white;
 }
 .offwhite {
   background-color: $offwhite;
@@ -346,10 +411,71 @@ iframe {
 // ADMIN
 //
 
-.admin {
+#admin {
   .well {
     border-radius: 5px;
     height: 500px;
     background-color: white;
   }
+}
+
+#rsvp {
+  .card {
+    border: none;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 50px 0;
+    position: relative;
+    top: -1000;
+    .heading {
+      margin-bottom: 40px;
+    }
+    h3, h4 {
+      padding-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+    th, td {
+      font-size: 14px;
+      color: white;
+      padding: 0 5px;
+    }
+    tr, td, th {
+      border: none
+    }
+    td {
+      // text-align: center
+    }
+    input[type="text"] {
+      min-width: 165px;
+      max-width: 200px;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+    button.btn-primary {
+      width: 50%;
+      margin: 20px auto;
+      font-size: 18pt;
+    }
+    table {
+      margin: 0 auto;
+    }
+    form.mobile {
+      input[type="text"] {
+        min-width: 100px;
+      }
+    }
+    .need-help {
+      font-size: 14px;
+    }
+  }
+  .card.in {
+    top: 0px;
+  }
+}
+.checkbox {
+  margin-top: 4px;
 }

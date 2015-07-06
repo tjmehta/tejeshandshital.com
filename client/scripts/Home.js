@@ -1,6 +1,6 @@
 import React from 'react';
 var Nav = require('./Nav.js');
-var RSVP = require('./RSVP.js');
+var RSVPSearch = require('./RSVPSearch.js');
 var debounce = require('debounce');
 var isMobile = require('ismobilejs');
 
@@ -147,10 +147,10 @@ export default class Home extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
-          <div id="rsvp" className="clear"></div>
+          <div id="rsvp-search" className="clear"></div>
         </div>
 
-        <RSVP />
+        <RSVPSearch />
 
         <div className="row section registries offwhite">
           <p>WE ARE REGISTERED AT</p>
@@ -277,7 +277,8 @@ class EventCard extends React.Component {
       mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
       },
-      draggable: false
+      draggable: false,
+      streetViewControl: false
     }
     var map = new google.maps.Map(document.getElementById(this.state.id), mapOptions);
 
@@ -325,7 +326,7 @@ class EventCard extends React.Component {
         <div id={ data.id } className="event-map"></div>
         <div className="event-content">
           <h5 className="title">{ data.title }</h5>
-          <h5 className="pink">{ data.date }</h5>
+          <h5 className="pink-text">{ data.date }</h5>
           { data.text }
         </div>
       </div>

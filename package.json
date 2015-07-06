@@ -41,15 +41,22 @@
     "debounce": "^1.0.0",
     "es6-promise": "^2.3.0",
     "escape-regexp": "0.0.1",
+    "form-to-object": "tjmehta/form-to-object#84dd2f8535556376b6807328f6a08325d1fb8add",
     "good": "^6.1.1",
     "good-console": "^5.0.0",
     "hapi": "^8.4.0",
     "hapi-webpack-dev-plugin": "^0.1.1",
     "i": "^0.3.3",
     "ismobilejs": "^0.3.5",
+    "keypather": "^1.10.1",
+    "methods": "^1.1.1",
     "multiline": "^1.0.2",
+    "object-loops": "^0.1.1",
     "react": "^0.13.0",
+    "react-hot-loader": "^1.2.7",
     "react-router": "^0.13.2",
+    "react-twitter-typeahead": "^1.1.2",
+    "react-typeahead": "^1.0.8",
     "whatwg-fetch": "^0.9.0"
   }
 }
