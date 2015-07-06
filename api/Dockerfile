@@ -11,10 +11,10 @@ RUN apt-get update \
 ENV LC_ALL en_US.UTF-8
 
 # APP
-WORKDIR /tejeshandshital.com
-ADD ./package.json /tejeshandshital.com/package.json
+WORKDIR /api.tejeshandshital.com
+ADD ./package.json /api.tejeshandshital.com/package.json
 RUN npm install
-ADD . /tejeshandshital.com
+ADD . /api.tejeshandshital.com
 ENV PORT 3000
 EXPOSE 3000
 CMD npm start
