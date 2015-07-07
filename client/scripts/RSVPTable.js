@@ -37,7 +37,7 @@ export default class App extends React.Component {
         <tbody>
           <tr>
             <th>Name</th>
-            <th>Mendhi</th>
+            <th>Mehndi</th>
             <th>Pithi</th>
             <th>Garba</th>
             <th>Wedding</th>
@@ -50,7 +50,7 @@ export default class App extends React.Component {
                 return r.rsvps.map(function (r) {
                   return <tr>
                     <td>{ r.name }</td>
-                    <td>{ Boolean(r.events['mendhi'])+0+'' }</td>
+                    <td>{ Boolean(r.events['mehndi'])+0+'' }</td>
                     <td>{ Boolean(r.events['pithi'])+0+'' }</td>
                     <td>{ Boolean(r.events['garba'])+0+'' }</td>
                     <td>{ Boolean(r.events['wedding'])+0+'' }</td>

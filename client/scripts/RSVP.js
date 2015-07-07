@@ -48,7 +48,7 @@ export default class App extends React.Component {
       events,
       keypather.get(invite, 'patel.events') || {},
       keypather.get(invite, 'mehta.events') || {},
-      adminMode ? {pithi:true, mendhi:true, garba:true, wedding:true, reception:true} : {}
+      adminMode ? {pithi:true, mehndi:true, garba:true, wedding:true, reception:true} : {}
     );
     var newState = put(this.state, 'invite', {
       address: formatAddr(address),
