@@ -5,6 +5,7 @@ var exists = require('101/exists');
 var debounce = require('debounce');
 var api = require('./api');
 var Typeahead = require('./react-typeahead');
+var formatAddr = require('./format-addr');
 
 export default class App extends React.Component {
   constructor() {
@@ -115,16 +116,4 @@ export default class App extends React.Component {
   handleSelect(evt, data) {
     window.open('/rsvp/'+data._id);
   }
-}
-
-function formatAddr (addr) {
-  var str = '';
-  str += (addr.number || '');
-  str  = (str + ' ' + addr.street + ' ' + (addr.type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_num  || '')).trim();
-  str += ', ';
-  str += (addr.city +', '+ addr.state +' '+ addr.zip);
-
-  return str;
 }

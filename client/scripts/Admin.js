@@ -6,6 +6,7 @@ var keypather = require('keypather')();
 var api = require('./api');
 var Typeahead = require('./react-typeahead');
 var RSVPTable = require('./RSVPTable');
+var formatAddr = require('./format-addr');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -68,11 +69,7 @@ export default class App extends React.Component {
             </form>
           </div>
           <div className="row well">
-            <h4>Confirmed RSVPs</h4>
-            <RSVPTable />
-          </div>
-          <div className="row well">
-            <h4>Manual RSVPs</h4>
+            <h4>Manual or Missing RSVPs</h4>
             <p>
               <span>Use this&nbsp;</span>
               <a
@@ -82,6 +79,10 @@ export default class App extends React.Component {
               </a>
               <span>&nbsp;for now..</span>
             </p>
+          </div>
+          <div className="row well">
+            <h4>Confirmed RSVPs</h4>
+            <RSVPTable />
           </div>
         </div>
       </div>
@@ -165,26 +166,6 @@ export default class App extends React.Component {
   }
 }
 
-function formatAddr (addr) {
-  var str = '';
-  var patelMultiName = keypather.get(addr, 'invite.patel.multiName');
-  var mehtaMultiName = keypather.get(addr, 'invite.mehta.multiName');
-  if (addr.isRSVP) {
-    return 'Manual RSVP: ' + rsvp.nameStr;
-  }
-  if (addr.zip === '00000') {
-    return 'Unknown address *Use as last resort*: ' +
-      (mehtaMultiName || patelMultiName);
-  }
-  str += (addr.number || '');
-  str  = (str + ' ' + addr.street + ' ' + (addr.type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_num  || '')).trim();
-  str += ', ';
-  str += (addr.city +', '+ addr.state +' '+ addr.zip);
-
-  return str;
-}
 function rsvpToAddress (rsvp) {
   var names = rsvp.rsvps.map(pluck('name'));
   var maxlength = 30;

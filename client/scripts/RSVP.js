@@ -11,6 +11,7 @@ var createCount = require('callback-count');
 var RSVPForm = require('./RSVPForm');
 var keypather = require('keypather')();
 var adminMode = ~window.location.href.indexOf('admin_mode');
+var formatAddr = require('./format-addr');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -172,16 +173,4 @@ export default class App extends React.Component {
       err: err.message
     });
   }
-}
-
-function formatAddr (addr) {
-  var str = '';
-  str += (addr.number || '');
-  str  = (str + ' ' + addr.street + ' ' + (addr.type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_type || '')).trim();
-  str  = (str + ' ' + (addr.sec_unit_num  || '')).trim();
-  str += ', ';
-  str += (addr.city +', '+ addr.state +' '+ addr.zip);
-
-  return str;
 }

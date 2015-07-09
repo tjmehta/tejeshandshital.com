@@ -30,6 +30,9 @@ var Invite = {
   multiName: {
     type: String
   },
+  prefix: {
+    type: String
+  },
   address: {
     type: String
   },
@@ -58,6 +61,9 @@ var AddressSchema = module.exports = new Schema({
   number: {
     type: String,
     index: true,
+  },
+  prefix: {
+    type: String
   },
   street: {
     type: String,
@@ -261,6 +267,10 @@ AddressSchema.statics.import = function (invitee, data, nameData, cb) {
         );
         debug('unique', doc.invite[invitee].names);
         debug('FULL invite', doc.invite[invitee]);
+      }
+      if (addressData.prefix && addressData.prefix !== doc.prefix) {
+        debug('FIX PREFIX', docInvite.prefix, invite.prefix);
+        $set.prefix = addressData.prefix;
       }
       self.findByIdAndUpdate(doc._id, { $set: $set }, {'new':true}, cb);
     });
