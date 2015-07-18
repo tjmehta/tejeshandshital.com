@@ -76,7 +76,8 @@ export default class App extends React.Component {
     };
     var bloodhound = {
       datumTokenizer: function (addr) {
-        return Bloodhound.tokenizers.whitespace(addr.full);
+        var tokens = Bloodhound.tokenizers.whitespace(addr.full);
+        return tokens.concat(tokens.map(concat('.')));
       },
       queryTokenizer: function (query) {
         return Bloodhound.tokenizers.whitespace(query);
@@ -116,4 +117,10 @@ export default class App extends React.Component {
   handleSelect(evt, data) {
     window.open('/rsvp/'+data._id);
   }
+}
+
+function concat (b) {
+  return function (a) {
+    return a + b;
+  };
 }
