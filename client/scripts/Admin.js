@@ -134,7 +134,7 @@ export default class App extends React.Component {
     };
     var datasource = {
       name: 'addresses',
-      display: 'full',
+      // display: 'full',
       limit: 3,
       source: this.state.addresses,
       templates: {
@@ -147,7 +147,17 @@ export default class App extends React.Component {
           '864-879-7173 ( Mehta\'s)<br/>',
           '864-297-0238 ( Patel\'s)',
           '</div>'
-        ].join('')
+        ].join(''),
+        suggestion: function (a) {
+          return [
+            '<div>',
+              '<div>', a.full,'</div>',
+              '<div>( ',
+                (a.invite.mehta.multiName || a.invite.patel.multiName),
+              ')</div>',
+            '</div>',
+          ].join('')
+        }
       }
     };
     return <Typeahead
