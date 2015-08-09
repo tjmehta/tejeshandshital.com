@@ -12,7 +12,7 @@ function formatAddr (addr) {
     return 'Manual RSVP: ' + rsvp.nameStr;
   }
   if (addr.zip === '00000') {
-    return ':' +
+    return ': ' +
       (mehtaMultiName || patelMultiName);
   }
   str += (addr.number || '');
