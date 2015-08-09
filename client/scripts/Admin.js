@@ -134,7 +134,7 @@ export default class App extends React.Component {
     };
     var datasource = {
       name: 'addresses',
-      // display: 'full',
+      display: 'full',
       limit: 3,
       source: this.state.addresses,
       templates: {
