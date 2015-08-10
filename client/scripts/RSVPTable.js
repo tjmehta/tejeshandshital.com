@@ -32,13 +32,6 @@ export default class App extends React.Component {
     alert(err.message + ' Please reload page');
   }
   render() {
-    var eventTotals = {
-      mehndi:    0,
-      pithi:     0,
-      garba:     0,
-      wedding:   0,
-      reception: 0
-    };
     return (
       <table className="table">
         <tbody>
@@ -53,45 +46,55 @@ export default class App extends React.Component {
           {
             this.state.rsvps.length === 0 ?
               <tr><td colSpan={ 5 } className="center-text">( None)</td></tr> :
-              this.state.rsvps.map(function (r) {
-                var rsvpRows = r.rsvps.map(function (r, i) {
-                  var events = {
-                    mehndi:    Boolean(r.events.mehndi)   +0,
-                    pithi:     Boolean(r.events.pithi)    +0,
-                    garba:     Boolean(r.events.garba)    +0,
-                    wedding:   Boolean(r.events.wedding)  +0,
-                    reception: Boolean(r.events.reception)+0
-                  };
-                  eventTotals.mehndi += events.mehndi;
-                  eventTotals.pithi += events.pithi;
-                  eventTotals.garba += events.garba;
-                  eventTotals.wedding += events.wedding;
-                  eventTotals.reception += events.reception;
-                  return <tr>
-                    <td>{ r.name }</td>
-                    <td>{ events.mehndi }</td>
-                    <td>{ events.pithi }</td>
-                    <td>{ events.garba }</td>
-                    <td>{ events.wedding }</td>
-                    <td>{ events.reception }</td>
-                  </tr>;
-                });
-                rsvpRows.unshift(
-                  <tr className="pink-text">
-                    <td><b>TOTALS</b></td>
-                    <td><b>{eventTotals.mehndi}</b></td>
-                    <td><b>{eventTotals.pithi}</b></td>
-                    <td><b>{eventTotals.garba}</b></td>
-                    <td><b>{eventTotals.wedding}</b></td>
-                    <td><b>{eventTotals.reception}</b></td>
-                  </tr>
-                );
-
-                return rsvpRows;
-              })
+              this.rsvpRows()
           }
         </tbody>
       </table>
     );
+  }
+  rsvpRows() {
+    var eventTotals = {
+      mehndi:    0,
+      pithi:     0,
+      garba:     0,
+      wedding:   0,
+      reception: 0
+    };
+    var rsvpRows = this.state.rsvps.map(function (r, i) {
+      return r.rsvps.map(function (r) {
+        var events = {
+          mehndi:    Boolean(r.events.mehndi)   +0,
+          pithi:     Boolean(r.events.pithi)    +0,
+          garba:     Boolean(r.events.garba)    +0,
+          wedding:   Boolean(r.events.wedding)  +0,
+          reception: Boolean(r.events.reception)+0
+        };
+        eventTotals.mehndi += events.mehndi;
+        eventTotals.pithi += events.pithi;
+        eventTotals.garba += events.garba;
+        eventTotals.wedding += events.wedding;
+        eventTotals.reception += events.reception;
+        return <tr>
+          <td>{ r.name }</td>
+          <td>{ events.mehndi }</td>
+          <td>{ events.pithi }</td>
+          <td>{ events.garba }</td>
+          <td>{ events.wedding }</td>
+          <td>{ events.reception }</td>
+        </tr>;
+      });
+    });
+    // total row
+    rsvpRows.unshift(
+      <tr className="pink-text">
+        <td><b>{ "TOTALS" }</b></td>
+        <td><b>{ eventTotals.mehndi }</b></td>
+        <td><b>{ eventTotals.pithi }</b></td>
+        <td><b>{ eventTotals.garba }</b></td>
+        <td><b>{ eventTotals.wedding }</b></td>
+        <td><b>{ eventTotals.reception }</b></td>
+      </tr>
+    );
+    return rsvpRows;
   }
 }
