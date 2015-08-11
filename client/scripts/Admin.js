@@ -7,47 +7,109 @@ var api = require('./api');
 var Typeahead = require('./react-typeahead');
 var RSVPTable = require('./RSVPTable');
 var formatAddr = require('./format-addr');
+var filter = require('object-loops/filter');
+var assign = require('101/assign');
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      missing: []
     };
     this.fetchAddresses();
+    this.fetchRsvps();
   }
   fetchAddresses() {
     api('/addresses')
       .then(this.handleAddresses.bind(this))
       .catch(this.handleErr.bind(this));
   }
-  fetchManualRSVPs() {
-    api('/rsvps', { address: {$exists:false} })
-      .then(this.handleManualRSVPs.bind(this))
+  fetchRsvps() {
+    api('/rsvps')
+      .then(this.handleRsvps.bind(this))
       .catch(this.handleErr.bind(this));
   }
   handleAddresses(addresses) {
     addresses = addresses.map(function (addr) {
+      if (addr.invite.mehta && addr.invite.patel) {
+        addr.invite.label = 'Mehta and Patel';
+      }
+      else if (addr.invite.mehta && !addr.invite.patel) {
+        addr.invite.label = 'Mehta';
+      }
+      else if (!addr.invite.mehta && addr.invite.patel) {
+        addr.invite.label = 'Patel';
+      }
       addr.full = formatAddr(addr);
       return addr;
     });
+    var rsvps = this.state.rsvps || {};
     this.putState({
       loading: false,
-      addresses: addresses
+      addresses: addresses,
+      missing: this.getMissing(addresses, this.state.rsvps)
     });
   }
-  handleManualRSVPs(rsvps) {
-    var addresses = (this.state.addresses || []).slice();
+  handleRsvps(rsvps) {
+    var addresses = this.state.addresses || {};
     this.putState({
-      loading: false,
-      addresses: addresses.concat(rsvps.map(rsvpToAddress))
+      rsvps: rsvps,
+      missing: this.getMissing(this.state.addresses, rsvps)
     });
+  }
+  getMissing(addresses, rsvps) {
+    if (!addresses || !rsvps || !addresses.length || !rsvps.length) {
+      return [];
+    }
+    rsvps = rsvps.slice(); // copy
+    var sortHash = {
+      Mehta: {
+        Patel: -1,
+        'Mehta and Patel': -1
+      },
+      Patel: {
+        Mehta: 1,
+        'Mehta and Patel': -1
+      },
+      'Mehta and Patel': {
+        Mehta: 1,
+        Patel: 1
+      }
+    };
+    return addresses
+      .filter(function (addr) {
+        var multiName =
+          keypather.get(addr, 'invite.mehta.multiName') ||
+          keypather.get(addr, 'invite.patel.multiName');
+        return !rsvps.some(function (r, i) {
+          if (r.address === addr._id) {
+            rsvps.splice(i, 1);
+            return true;
+          }
+        });
+      })
+      .sort(function (a, b) {
+        var aMultiName =
+          keypather.get(a, 'invite.mehta.multiName') ||
+          keypather.get(a, 'invite.patel.multiName');
+        var bMultiName =
+          keypather.get(b, 'invite.mehta.multiName') ||
+          keypather.get(b, 'invite.patel.multiName');
+        if (a.invite.label === b.invite.label) {
+          return sortByAlphabet(aMultiName, bMultiName);
+        }
+        else {
+          return sortHash[a.invite.label][b.invite.label];
+        }
+      });
   }
   putState(changedState) {
     var newState = put(this.state, changedState);
     this.setState(newState);
   }
   handleErr(err) {
+    console.error(err);
     alert(err.message + ' Please reload page');
   }
   render() {
@@ -84,9 +146,73 @@ export default class App extends React.Component {
             <h4>Confirmed RSVPs</h4>
             <RSVPTable />
           </div>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <div className="row well">
+            <h4>People not coming..</h4>
+            <table className="table">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>Invited By</th>
+                  <th>Num Invited</th>
+                  <th>Events</th>
+                </tr>
+                {
+                  this.state.missing.length === 0 ?
+                    <tr><td colSpan={ 3 } className="center-text">( None)</td></tr> :
+                    this.missingRows()
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
+  }
+  missingRows() {
+    return this.state.missing.map(function (addr) {
+      var numInvited = Math.max(
+        parseInt(keypather.get(addr, 'invite.mehta.numInvited') || 0),
+        parseInt(keypather.get(addr, 'invite.patel.numInvited') || 0)
+      )
+      var multiName =
+          keypather.get(addr, 'invite.mehta.multiName') ||
+          keypather.get(addr, 'invite.patel.multiName');
+      var mehtaEvents = keypather.get(addr, 'invite.mehta.events') || {};
+      var patelEvents = keypather.get(addr, 'invite.patel.events') || {};
+      //m
+      mehtaEvents.mehndi = parseInt(mehtaEvents.mehndi || 0);
+      mehtaEvents.pithi = parseInt(mehtaEvents.pithi || 0);
+      mehtaEvents.garba = parseInt(mehtaEvents.garba || 0);
+      mehtaEvents.wedding = parseInt(mehtaEvents.wedding || 0);
+      mehtaEvents.reception = parseInt(mehtaEvents.reception || 0);
+      //p
+      patelEvents.mehndi = parseInt(patelEvents.mehndi || 0);
+      patelEvents.pithi = parseInt(patelEvents.pithi || 0);
+      patelEvents.garba = parseInt(patelEvents.garba || 0);
+      patelEvents.wedding = parseInt(patelEvents.wedding || 0);
+      patelEvents.reception = parseInt(patelEvents.reception || 0);
+      var events = assign(
+        {},
+        mehtaEvents,
+        patelEvents
+      );
+      events = filter(events, function (v) {
+        return v>0;
+      });
+      return <tr>
+        <td>{ multiName }</td>
+        <td>{ addr.invite.label }</td>
+        <td>{ numInvited }</td>
+        <td>{ Object.keys(events).join(', ') }</td>
+      </tr>;
+    });
   }
   getTypeahead() {
     if (this.state.loading) {
@@ -109,9 +235,6 @@ export default class App extends React.Component {
         }
         else if (addr.invite.mehta) {
           concatInviteTokens(addr.invite.mehta);
-        }
-        if (tokens.length === 0) {
-          console.log('DAFUQ', addr.invite);
         }
         return tokens;
         function concatInviteTokens (invite) {
@@ -188,4 +311,10 @@ function rsvpToAddress (rsvp) {
     nameStr: nameStr,
     isRSVP: true
   };
+}
+
+function sortByAlphabet (name1, name2) {
+  if(name1 < name2) return -1;
+  if(name1 > name2) return 1;
+  return 0;
 }
