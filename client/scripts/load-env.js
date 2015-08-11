@@ -6,7 +6,9 @@ var mrlocal = /[.]local/.test(window.location.href);
 var localhost = ~window.location.href.indexOf('localhost');
 
 config.dev = {
-  apiHost: 'http://api.tejeshandshital.com'
+  apiHost: mrlocal ?
+    'http://mrpro.local:3001':
+    'http://localhost:3001'
 };
 
 config.prod = {
