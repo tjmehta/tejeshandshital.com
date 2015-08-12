@@ -19,6 +19,7 @@ export default class App extends React.Component {
     else {
       setInterval(boundHandleWindowChanges, 100);
     }
+    window.onclick = this.handleWindowClick.bind(this);
   }
   handleWindowChanges() {
     var windowScroll = window.scrollY || window.pageYOffset;
@@ -29,6 +30,9 @@ export default class App extends React.Component {
       });
     }
   }
+  handleWindowClick() {
+    this.closeDropdown();
+  }
   componentWillReceiveProps(nextProps) {
     if (this.props.navTop !== nextProps.navTop) {
       this.setState({
@@ -37,11 +41,17 @@ export default class App extends React.Component {
       });
     }
   }
-  openDropdown(e) {
+  toggleDropdown(e) {
     this.setState(
       put(this.state, 'dropdown', !this.state.dropdown)
     );
     e.preventDefault();
+    e.stopPropagation();
+  }
+  closeDropdown() {
+    this.setState(
+      put(this.state, 'dropdown', false)
+    );
   }
   toggleNav() {
     this.setState(
@@ -54,7 +64,7 @@ export default class App extends React.Component {
     );
   }
   render() {
-    var fixed = (this.state.windowScroll > this.state.navTop) ? true : false
+    var fixed = (this.state.windowScroll > this.state.navTop) ? true : false;
     return (
       <div className={ fixed ? 'navbar navbar-default z-index-100 fixed' : 'navbar navbar-default  z-index-100' }>
   			<div className="container">
@@ -73,11 +83,11 @@ export default class App extends React.Component {
   						<li><a onClick={ this.closeNav.bind(this) } href="#accomodations">Accomodations</a></li>
   						<li><a onClick={ this.closeNav.bind(this) } href="#rsvp-search">RSVP</a></li>
               <li className={ this.state.dropdown ? "dropdown open" : "dropdown" }>
-  							<a href="#" onClick={ this.openDropdown.bind(this) } className="dropdown-toggle" data-toggle="dropdown">Registries <b className="caret"></b></a>
+  							<a href="#" onClick={ this.toggleDropdown.bind(this) } className="dropdown-toggle" data-toggle="dropdown">Registries <b className="caret"></b></a>
   							<ul className="dropdown-menu">
   								<li><a onClick={ this.closeNav.bind(this) } href="http://www1.macys.com/registry/wedding/guest/?registryId=6349490" target="_blank">Macy's</a></li>
   								<li><a onClick={ this.closeNav.bind(this) } href="https://secure.williams-sonoma.com/registry/nw2x8nwrmc/registry-list.html" target="_blank">Williams and Sonoma</a></li>
-  								<li><a onClick={ this.closeNav.bind(this) } href="#registries">Bed & Bath</a></li>
+  								<li><a onClick={ this.closeNav.bind(this) } href="http://www.bedbathandbeyond.com/store/giftregistry/view_registry_guest.jsp?pwsToken=&eventType=Wedding&registryId=542118486&pwsurl=" target="_blank">Bed & Bath</a></li>
   							</ul>
   						</li>
   					</ul>
