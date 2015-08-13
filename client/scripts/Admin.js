@@ -276,7 +276,10 @@ export default class App extends React.Component {
             '<div>',
               '<div>', a.full,'</div>',
               '<div>( ',
-                (a.invite.mehta.multiName || a.invite.patel.multiName),
+              (
+                keypather.get(a, 'invite.mehta.multiName') ||
+                keypather.get(a, 'invite.patel.multiName')
+              ),
               ')</div>',
             '</div>',
           ].join('')

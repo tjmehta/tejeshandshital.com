@@ -74,7 +74,7 @@ export default class App extends React.Component {
         eventTotals.garba += events.garba;
         eventTotals.wedding += events.wedding;
         eventTotals.reception += events.reception;
-        return <tr>
+        return <tr className="green-text">
           <td>{ r.name }</td>
           <td>{ events.mehndi }</td>
           <td>{ events.pithi }</td>

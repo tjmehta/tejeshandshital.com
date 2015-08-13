@@ -11,6 +11,7 @@ config.dev = {
     'http://localhost:3001'
 };
 
+config.dev =
 config.prod = {
   apiHost: 'http://api.tejeshandshital.com'
 };
