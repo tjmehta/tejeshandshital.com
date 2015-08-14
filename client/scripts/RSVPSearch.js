@@ -49,14 +49,9 @@ export default class App extends React.Component {
         <div className="col-sm-2"></div>
         <div className="col-sm-8">
           <form onSubmit={ this.preventDefault.bind(this) }>
-            <div className="form-group form-group-lg">
-              <label className="white-text" for="address">
-                Your Address (where you recieved your invite)
-              </label>
-            </div>
-            <div className="form-group form-group-lg">
-              { this.getTypeahead() }
-            </div>
+            <center className="white-text">
+              <h4>RSVPs are closed! We are excited to see everyone :)</h4>
+            </center>
           </form>
         </div>
         <div className="col-sm-2"></div>
