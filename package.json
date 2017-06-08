@@ -21,7 +21,7 @@
   "homepage": "https://github.com/tjmehta/tejeshandshital.com",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
-    "babel-core": "^6.21.0",
+    "babel-core": "^6.25.0",
     "babel-loader": "^6.2.10",
     "code": "^4.0.0",
     "css-loader": "^0.26.1",
