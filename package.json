@@ -41,7 +41,7 @@
     "debounce": "^1.0.0",
     "escape-regexp": "0.0.1",
     "good": "^7.1.0",
-    "good-console": "^6.2.0",
+    "good-console": "^6.4.1",
     "hapi": "^16.1.0",
     "hapi-webpack-dev-plugin": "^1.2.0",
     "i": "^0.3.3",
