@@ -35,7 +35,7 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
-    "101": "^1.6.2",
+    "101": "^1.6.3",
     "auto-debug": "^1.0.1",
     "callback-count": "^0.2.0",
     "debounce": "^1.0.0",
