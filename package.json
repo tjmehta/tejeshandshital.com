@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "101": "^1.6.2",
-    "auto-debug": "^1.0.1",
+    "auto-debug": "^1.0.2",
     "callback-count": "^0.2.0",
     "debounce": "^1.0.0",
     "escape-regexp": "0.0.1",
